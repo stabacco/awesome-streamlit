@@ -206,7 +206,7 @@ I will be adding more examples when I get the time.
 
 
 def js_callbacks_panel():
-    x = [x * 0.005 for x in range(0, 200)]
+    x = [x * 0.005 for x in range(200)]
     y = x
 
     source = bokeh.models.ColumnDataSource(data=dict(x=x, y=y))

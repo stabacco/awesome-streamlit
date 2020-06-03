@@ -30,8 +30,9 @@ def screenshot_non_gallery_resources(driver):
     other_resources = [
         resource
         for resource in ast.database.RESOURCES
-        if not ast.database.tags.APP_IN_GALLERY in resource.tags
+        if ast.database.tags.APP_IN_GALLERY not in resource.tags
     ]
+
 
     for index, resource in enumerate(other_resources):
         logging.info(

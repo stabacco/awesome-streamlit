@@ -322,10 +322,7 @@ def get_plotly_subplots():
         col=2,
     )
 
-    if COLOR == "black":
-        template="plotly"
-    else:
-        template ="plotly_dark"
+    template = "plotly" if COLOR == "black" else "plotly_dark"
     fig.update_layout(
         height=500,
         width=700,

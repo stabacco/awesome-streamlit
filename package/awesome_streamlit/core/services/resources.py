@@ -115,9 +115,7 @@ def to_markdown(resources: List[Resource], report_by_tag: bool = True) -> str:
     else:
         markdown_bullets = [resource.to_markdown_bullet() for resource in resources]
 
-    markdown = "\n".join(markdown_bullets)
-
-    return markdown
+    return "\n".join(markdown_bullets)
 
 
 def get_resources_markdown(

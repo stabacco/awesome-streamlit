@@ -168,14 +168,12 @@ var message_obj = {{
 """
 
         js_code = custom_state_wrap_message_obj(js_code)
-        html_code = f"""
+        return f"""
     <label for="username">Username:</label>
     <div style="width:100%"><input style="width:100%;background-color: #f0f2f6;border-style: none;" type="text" id="username" name="username" value="{self.username}"></div>
     <label for="pass">Password (8 characters minimum):</label>
     <div style="width:100%"><input style="width:100%;background-color: #f0f2f6;border-style: none;" type="password" id="password" name="password" minlength="8" required value="{self.password}"></div>
     <button type="button" onclick="{js_code}">Sign In</button>"""
-
-        return html_code
 
     @property
     def is_logged_in(self) -> bool:

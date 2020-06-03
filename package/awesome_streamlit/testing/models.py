@@ -33,9 +33,7 @@ class TesTItem:
     @property
     def result(self) -> bool:
         """True if no exception. False otherwise"""
-        if self.exception:
-            return False
-        return True
+        return not self.exception
 
     @property
     def result_str(self) -> str:

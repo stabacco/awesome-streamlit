@@ -8,7 +8,7 @@ value = slider_ph.slider("slider", 0, 100, 25, 1)
 info_ph.info(value)
 
 if st.button('animate'):
-    for x in range(20):
+    for _ in range(20):
         time.sleep(.5)
 
         value = slider_ph.slider("slider", 0, 100, value + 1, 1)

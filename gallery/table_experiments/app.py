@@ -117,9 +117,10 @@ def plotly_table(results):
     filter_table = _filter_results(results, number_of_rows, number_of_columns)
 
     header_values = list(filter_table.columns)
-    cell_values = []
-    for index in range(0, len(filter_table.columns)):
-        cell_values.append(filter_table.iloc[:, index : index + 1])
+    cell_values = [
+        filter_table.iloc[:, index : index + 1]
+        for index in range(len(filter_table.columns))
+    ]
 
     if not style:
         fig = go.Figure(

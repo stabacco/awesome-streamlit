@@ -46,10 +46,7 @@ class Resource:
         self.name = name
         self.url = url
         self.is_awesome = is_awesome
-        if tags:
-            self.tags = tags
-        else:
-            self.tags = []
+        self.tags = tags if tags else []
         self.author = author
 
     def to_markdown_bullet(self) -> str:
