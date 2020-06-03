@@ -66,11 +66,7 @@ class OwidDashboard:
         owid_data_sets: Optional[pd.DataFrame] = None,
     ):
 
-        if not shape_data:
-            self.shape_data = self.get_shape_data()
-        else:
-            self.shape_data = shape_data
-
+        self.shape_data = self.get_shape_data() if not shape_data else shape_data
         if not owid_data_sets:
             self.owid_data_sets = self.get_owid_data_sets()
         else:

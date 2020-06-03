@@ -224,8 +224,7 @@ There is a lot to I need to learn across the HoloViz suite of tools.
             [pd.DataFrame] -- The Dataframe of Kickstarter Data
         """
         source_data = cls._extract()
-        kickstarter_df = cls._transform(source_data)
-        return kickstarter_df
+        return cls._transform(source_data)
 
     @staticmethod
     def get_categories(kickstarter_df) -> List[str]:

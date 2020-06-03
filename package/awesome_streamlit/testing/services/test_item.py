@@ -71,6 +71,6 @@ def to_test_results_summary(test_items: List[TesTItem]) -> str:
     Returns:
         str -- Summary of failed and passed tests count
     """
-    passed_count = sum([test_item.result for test_item in test_items])
+    passed_count = sum(test_item.result for test_item in test_items)
     failed_count = len(test_items) - passed_count
     return f"All tests have run: {failed_count} failed, {passed_count} passed."

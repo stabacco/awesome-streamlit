@@ -214,9 +214,7 @@ sidebar**. By adjusting them, the model is retrained and its performance re-eval
 
         # Analyze Feature Importance.
         n_f = 30 # Amount of Desired Features.
-        sorted_feature_names = []
-        for f in range(n_f):
-            sorted_feature_names.append(feature_names[indices[f]])
+        sorted_feature_names = [feature_names[indices[f]] for f in range(n_f)]
         #feature_importance = pd.DataFrame(data=feature_importances[indices[0:n_f]], index=sorted_feature_names,columns=["feature importance"])
         feature_importance = pd.DataFrame(data=np.transpose(np.array((np.round(feature_importances[indices[0:n_f]],5),sorted_feature_names))),columns=["feature importance","features"])
         return classifier,feature_importance
@@ -260,10 +258,7 @@ def get_mt_samples() -> pd.DataFrame:
     Returns:
         pd.DataFrame -- A dataframe
     """
-    if MT_SAMPLES_PATH.exists():
-        location = MT_SAMPLES_PATH
-    else:
-        location = MT_SAMPLES_URL
+    location = MT_SAMPLES_PATH if MT_SAMPLES_PATH.exists() else MT_SAMPLES_URL
     return pd.read_csv(location, index_col=0,usecols=[0,1,2,4]).dropna()
 
 

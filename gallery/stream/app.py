@@ -25,9 +25,11 @@ def main():
     app_name = st.text_input(label="Name of your application.")
 
     # create temp directory for app - could be used for a future preview functionality
-    if os.path.lexists(os.path.join(wd_dir, "tmp")):
-        if os.path.lexists(os.path.join(wd_dir, "tmp", app_name)) == False:
-            os.mkdir(path=os.path.join(wd_dir, "tmp", app_name))
+    if (
+        os.path.lexists(os.path.join(wd_dir, "tmp"))
+        and os.path.lexists(os.path.join(wd_dir, "tmp", app_name)) == False
+    ):
+        os.mkdir(path=os.path.join(wd_dir, "tmp", app_name))
 
     st.write(app_name)
     st.info(f"Current working directory: {wd_dir}")
@@ -39,8 +41,8 @@ def main():
 
     st.write("<hr>", unsafe_allow_html=True)
 
-    page_name = list()
-    page_elt = list()
+    page_name = []
+    page_elt = []
 
     for p in range(page_num):
         page_name_holder = st.text_input(label=f"Name of page #{p}", key=f"pn{p}")

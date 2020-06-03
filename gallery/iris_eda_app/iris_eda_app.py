@@ -166,8 +166,7 @@ def main():
 
 @st.cache(persist=True)
 def explore_data(dataset):
-    df = pd.read_csv(GITHUB_ROOT + dataset)
-    return df
+    return pd.read_csv(GITHUB_ROOT + dataset)
 
 
 @st.cache

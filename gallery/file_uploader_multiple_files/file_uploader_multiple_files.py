@@ -43,7 +43,7 @@ def main():
         value = result.getvalue()
 
         # And add it to the static_store if not already in
-        if not value in static_store.values():
+        if value not in static_store.values():
             static_store[result] = value
     else:
         static_store.clear()  # Hack to clear list if the user clears the cache and reloads the page

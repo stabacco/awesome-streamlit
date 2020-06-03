@@ -10,8 +10,7 @@ JSON_URL = "https://raw.githubusercontent.com/virusvn/streamlit-components-demo/
 
 def fetch_json(url: str):
     data = urllib.request.urlopen(url).read()
-    output = json.loads(data)
-    return output
+    return json.loads(data)
 
 
 def get_apps(url: str) -> Dict[str, str]:

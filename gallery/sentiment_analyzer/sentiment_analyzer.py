@@ -31,11 +31,12 @@ def get_all_data():
 
 @st.cache
 def preprocessing_data(data):
-    processing_data = []
-    for single_data in data:
-        if len(single_data.split("\t")) == 2 and single_data.split("\t")[1] != "":
-            processing_data.append(single_data.split("\t"))
-    return processing_data
+    return [
+        single_data.split("\t")
+        for single_data in data
+        if len(single_data.split("\t")) == 2
+        and single_data.split("\t")[1] != ""
+    ]
 
 
 @st.cache
@@ -45,7 +46,7 @@ def split_data(data):
     training_data = []
     evaluation_data = []
 
-    for indice in range(0, total):
+    for indice in range(total):
         if indice < total * training_ratio:
             training_data.append(data[indice])
         else:

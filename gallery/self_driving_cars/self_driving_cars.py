@@ -104,14 +104,13 @@ def run_the_app():
     @st.cache
     def create_summary(metadata):
         one_hot_encoded = pd.get_dummies(metadata[["frame", "label"]], columns=["label"])
-        summary = one_hot_encoded.groupby(["frame"]).sum().rename(columns={
-            "label_biker": "biker",
-            "label_car": "car",
-            "label_pedestrian": "pedestrian",
-            "label_trafficLight": "traffic light",
-            "label_truck": "truck"
-        })
-        return summary
+        return one_hot_encoded.groupby(["frame"]).sum().rename(columns={
+                "label_biker": "biker",
+                "label_car": "car",
+                "label_pedestrian": "pedestrian",
+                "label_trafficLight": "traffic light",
+                "label_truck": "truck"
+            })
 
     # An amazing property of st.cached functions is that you can pipe them into
     # one another to form a computation DAG (directed acyclic graph). Streamlit

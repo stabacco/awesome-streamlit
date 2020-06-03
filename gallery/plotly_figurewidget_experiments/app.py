@@ -85,41 +85,38 @@ def example_3():
     st.plotly_chart(g)
 
     def validate():
-        if (
-            origin.value in df["origin"].unique()
-            and textbox.value in df["carrier"].unique()
-        ):
-            return True
-        else:
-            return False
+        return (
+                origin.value in df["origin"].unique()
+                and textbox.value in df["carrier"].unique()
+            )
 
     def response(change):
-        if validate():
-            if use_date.value:
-                filter_list = [
-                    i and j and k
-                    for i, j, k in zip(
-                        df["month"] == month.value,
-                        df["carrier"] == textbox.value,
-                        df["origin"] == origin.value,
-                    )
-                ]
-                temp_df = df[filter_list]
+        if not validate():
+            return
+        if use_date.value:
+            filter_list = [
+                i and j and k
+                for i, j, k in zip(
+                    df["month"] == month.value,
+                    df["carrier"] == textbox.value,
+                    df["origin"] == origin.value,
+                )
+            ]
+        else:
+            filter_list = [
+                i and j
+                for i, j in zip(df["carrier"] == "DL", df["origin"] == origin.value)
+            ]
+        with g.batch_update():
+            temp_df = df[filter_list]
 
-            else:
-                filter_list = [
-                    i and j
-                    for i, j in zip(df["carrier"] == "DL", df["origin"] == origin.value)
-                ]
-                temp_df = df[filter_list]
             x1 = temp_df["arr_delay"]
+            g.data[0].x = x1
             x2 = temp_df["dep_delay"]
-            with g.batch_update():
-                g.data[0].x = x1
-                g.data[1].x = x2
-                g.layout.barmode = "overlay"
-                g.layout.xaxis.title = "Delay in Minutes"
-                g.layout.yaxis.title = "Number of Delays"
+            g.data[1].x = x2
+            g.layout.barmode = "overlay"
+            g.layout.xaxis.title = "Delay in Minutes"
+            g.layout.yaxis.title = "Number of Delays"
 
     origin.observe(response, names="value")
     textbox.observe(response, names="value")

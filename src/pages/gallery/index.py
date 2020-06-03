@@ -43,9 +43,11 @@ def write():
         apps = get_apps_by_author(apps, author)
 
     app_index = 0
-    if author == ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY.author:
-        if ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY in apps:
-            app_index = apps.index(ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY)
+    if (
+        author == ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY.author
+        and ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY in apps
+    ):
+        app_index = apps.index(ast.database.apps_in_gallery.DEFAULT_APP_IN_GALLERY)
 
     apps = ast.core.services.resources.sort_resources(apps)
     run_app = st.selectbox("Select the App", apps, index=app_index)
